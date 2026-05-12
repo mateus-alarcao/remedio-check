@@ -1,8 +1,9 @@
-
 import json
 import os
 
-VERSION = "1.0.0"
+from api_medicamento import exibir_info_medicamento
+
+VERSION = "1.1.0"
 DATA_FILE = "remedios.json"
 
 
@@ -68,6 +69,7 @@ def menu() -> None:
         print("3. Marcar como tomado")
         print("4. Remover remédio")
         print("5. Resetar dia")
+        print("6. Buscar informações de um remédio (OpenFDA)")
         print("0. Sair")
         opcao = input("\nEscolha uma opção: ").strip()
 
@@ -108,6 +110,10 @@ def menu() -> None:
             resetar_dia(remedios)
             salvar_dados(remedios)
             print("🔄 Todos os remédios resetados para o novo dia!")
+
+        elif opcao == "6":
+            nome = input("Nome do remédio para buscar (preferencialmente em inglês): ")
+            exibir_info_medicamento(nome)
 
         elif opcao == "0":
             print("Até logo! Cuide-se. 💊")
