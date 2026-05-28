@@ -6,12 +6,10 @@ os testes rodem sem dependência de conexão real com a internet.
 """
 
 import json
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
 import pytest
-
 from src.api_medicamento import buscar_info_medicamento
-
 
 # ── Resposta simulada da API OpenFDA ─────────────────────────────────────────
 

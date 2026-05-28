@@ -1,7 +1,7 @@
 
 import pytest
-
 from src.app import adicionar_remedio, marcar_tomado, remover_remedio, resetar_dia
+
 
 def test_adicionar_remedio_valido():
     remedios = []
