@@ -9,6 +9,7 @@ import json
 from unittest.mock import MagicMock, patch
 
 import pytest
+
 from api_medicamento import buscar_info_medicamento
 
 # ── Resposta simulada da API OpenFDA ─────────────────────────────────────────
