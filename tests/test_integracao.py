@@ -53,7 +53,7 @@ class TestBuscarInfoMedicamento:
 
     def test_retorna_dados_corretos_quando_api_encontra_medicamento(self):
         """Quando a API retorna um resultado, os campos devem ser mapeados corretamente."""
-        with patch("src.api_medicamento.urllib.request.urlopen") as mock_open:
+        with patch("api_medicamento.urllib.request.urlopen") as mock_open:
             mock_open.return_value = _mock_urlopen(RESPOSTA_OPENFDA_VALIDA)
 
             resultado = buscar_info_medicamento("aspirin")
@@ -66,7 +66,7 @@ class TestBuscarInfoMedicamento:
 
     def test_retorna_none_quando_medicamento_nao_encontrado(self):
         """Quando a API retorna lista vazia, a função deve retornar None."""
-        with patch("src.api_medicamento.urllib.request.urlopen") as mock_open:
+        with patch("api_medicamento.urllib.request.urlopen") as mock_open:
             mock_open.return_value = _mock_urlopen(RESPOSTA_OPENFDA_VAZIA)
 
             resultado = buscar_info_medicamento("xyzinexistente")
@@ -75,14 +75,14 @@ class TestBuscarInfoMedicamento:
 
     def test_retorna_none_quando_api_falha(self):
         """Quando a requisição HTTP lança exceção, a função deve retornar None."""
-        with patch("src.api_medicamento.urllib.request.urlopen", side_effect=Exception("timeout")):
+        with patch("api_medicamento.urllib.request.urlopen", side_effect=Exception("timeout")):
             resultado = buscar_info_medicamento("aspirin")
 
         assert resultado is None
 
     def test_url_montada_com_nome_correto(self):
         """Garante que a URL enviada à API contém o nome buscado."""
-        with patch("src.api_medicamento.urllib.request.urlopen") as mock_open:
+        with patch("api_medicamento.urllib.request.urlopen") as mock_open:
             mock_open.return_value = _mock_urlopen(RESPOSTA_OPENFDA_VAZIA)
 
             buscar_info_medicamento("metformin")
@@ -115,7 +115,7 @@ class TestBuscarInfoMedicamento:
                 }
             ]
         }
-        with patch("src.api_medicamento.urllib.request.urlopen") as mock_open:
+        with patch("api_medicamento.urllib.request.urlopen") as mock_open:
             mock_open.return_value = _mock_urlopen(payload)
             resultado = buscar_info_medicamento("testdrug")
 

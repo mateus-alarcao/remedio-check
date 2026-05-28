@@ -1,4 +1,3 @@
-
 import pytest
 
 from app import adicionar_remedio, marcar_tomado, remover_remedio, resetar_dia
@@ -38,7 +37,6 @@ def test_adicionar_nome_apenas_espacos():
         adicionar_remedio(remedios, "   ", "08:00")
 
 
-
 def test_marcar_tomado():
     remedios = []
     adicionar_remedio(remedios, "Ibuprofeno", "09:00")
@@ -60,7 +58,6 @@ def test_marcar_tomado_indice_negativo():
         marcar_tomado(remedios, -1)
 
 
-
 def test_remover_remedio():
     remedios = []
     adicionar_remedio(remedios, "Metformina", "08:00")
@@ -73,7 +70,6 @@ def test_remover_indice_invalido():
     remedios = []
     with pytest.raises(IndexError):
         remover_remedio(remedios, 0)
-
 
 
 def test_resetar_dia():
