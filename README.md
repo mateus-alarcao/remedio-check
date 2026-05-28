@@ -1,6 +1,5 @@
 # 💊 Remédio Check
 
-![CI](https://github.com/mateus-alarcao/remedio-check/actions/workflows/ci.yml/badge.svg)
 
 > 🚀 **Deploy:** aplicação CLI — execute localmente seguindo as instruções abaixo.
 > Para execução sem instalação: `docker run --rm -it $(docker build -q .)` *(veja seção Docker)*
