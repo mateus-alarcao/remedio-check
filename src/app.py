@@ -1,4 +1,3 @@
-import os
 
 from api_medicamento import exibir_info_medicamento
 from db import (

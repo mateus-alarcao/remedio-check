@@ -7,8 +7,6 @@ rodem sem conexão real com a internet ou banco de dados configurado.
 
 from unittest.mock import MagicMock
 
-import pytest
-
 from db import (
     adicionar_remedio_db,
     carregar_dados,
@@ -16,7 +14,6 @@ from db import (
     remover_remedio_db,
     resetar_dia_db,
 )
-
 
 # ── Helper: cria um mock do cliente Supabase ──────────────────────────────────
 
@@ -99,14 +96,12 @@ class TestAdicionarRemedioDB:
         client.table.assert_called_with("remedios")
 
     def test_nome_e_horario_sao_enviados_sem_espacos(self):
-        client = _make_client([{"id": 1, "nome": "Vitamina C", "horario": "07:00", "tomado": False}])
+        dados = [{"id": 1, "nome": "Vitamina C", "horario": "07:00", "tomado": False}]
+        client = _make_client(dados)
         adicionar_remedio_db("  Vitamina C  ", "  07:00  ", client=client)
-        # Verifica que insert foi chamado com os valores sem espaços extras
         insert_call_args = client.table.return_value.insert.call_args[0][0]
         assert insert_call_args["nome"] == "Vitamina C"
         assert insert_call_args["horario"] == "07:00"
-
-
 # ── Testes: marcar_tomado_db ──────────────────────────────────────────────────
 
 
