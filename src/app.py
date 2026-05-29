@@ -1,4 +1,5 @@
-
+from dotenv import load_dotenv
+load_dotenv()
 from api_medicamento import exibir_info_medicamento
 from db import (
     adicionar_remedio_db,
