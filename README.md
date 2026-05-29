@@ -18,20 +18,6 @@ A partir da **v2.0.0**, os dados são persistidos em um **banco de dados Postgre
 
 ---
 
-## 👥 Integrantes do Grupo
-
-| Nome Completo | Matrícula | GitHub |
-|---|---|---|
-| Mateus Alarcão | — | [@mateus-alarcao](https://github.com/mateus-alarcao) |
-| _(integrante 2)_ | — | — |
-| _(integrante 3)_ | — | — |
-| _(integrante 4)_ | — | — |
-| _(integrante 5)_ | — | — |
-
-> ⚠️ Preencha a tabela com os dados de todos os membros antes da entrega.
-
----
-
 ## ✅ Funcionalidades
 
 - Adicionar remédio com nome e horário
@@ -241,4 +227,3 @@ remedio-check/
 ## 🔗 Links
 
 - **Repositório:** [https://github.com/mateus-alarcao/remedio-check](https://github.com/mateus-alarcao/remedio-check)
-- **Deploy:** *(link da aplicação publicada — preencher)*
