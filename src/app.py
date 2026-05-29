@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
-from api_medicamento import exibir_info_medicamento
-from db import (
+from api_medicamento import exibir_info_medicamento  # noqa: E402
+from db import (  # noqa: E402
     adicionar_remedio_db,
     carregar_dados,
     marcar_tomado_db,
