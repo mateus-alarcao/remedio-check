@@ -60,7 +60,6 @@ pip install -r requirements.txt
 
 # 4. Configure as variáveis de ambiente
 cp .env.example .env
-# Edite o arquivo .env com sua URL e chave do Supabase
 ```
 
 Conteúdo do `.env`:
