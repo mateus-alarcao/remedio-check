@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    env:
+      # Injeta as credenciais do Supabase via GitHub Secrets.
+      # Cadastre SUPABASE_URL e SUPABASE_KEY em:
+      # GitHub repo > Settings > Secrets and variables > Actions
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+    steps:
+      - name: 📥 Checkout do código
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 📦 Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: 🔍 Lint com Ruff
+        run: ruff check src/ tests/
+
+      - name: 🧪 Rodar testes
+        run: pytest --tb=short -v
