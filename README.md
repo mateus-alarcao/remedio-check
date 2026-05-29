@@ -44,22 +44,6 @@ A partir da **v2.0.0**, os dados são persistidos em um **banco de dados Postgre
 
 ---
 
-## 🗄️ Banco de Dados — Supabase
-
-### Criar a tabela
-
-1. Acesse [supabase.com](https://supabase.com) e crie um projeto gratuito.
-2. No menu lateral, clique em **SQL Editor**.
-3. Cole o conteúdo do arquivo [`setup.sql`](./setup.sql) e clique em **Run**.
-
-### Obter as credenciais
-
-1. No menu lateral, vá em **Settings > API**.
-2. Copie a **Project URL** e a chave **anon public**.
-3. Cole-as no seu arquivo `.env` (veja a seção abaixo).
-
----
-
 ## ⚙️ Instalação e Configuração
 
 ```bash
@@ -82,8 +66,8 @@ cp .env.example .env
 
 Conteúdo do `.env`:
 ```
-SUPABASE_URL=https://SEU_PROJETO.supabase.co
-SUPABASE_KEY=sua_chave_anon_publica_aqui
+SUPABASE_URL=https://nxkrpxgefmjuwbyssvwm.supabase.co
+SUPABASE_KEY=sb_publishable_Q1wNgX10KUzgfmsQbjG2Jg_5e3lk338
 ```
 
 ---
@@ -171,22 +155,7 @@ Nome do remédio (preferencialmente em inglês): aspirin
 
 > ⚠️ A base OpenFDA é americana. Use o nome do princípio ativo em inglês (ex: `metformin`, `aspirin`, `omeprazole`).
 
----
 
-## 🔐 CI/CD — GitHub Actions
-
-A pipeline roda automaticamente em todo **push** e **Pull Request** para a branch `main`:
-
-1. Lint com `ruff`
-2. Todos os testes com `pytest`
-
-Para que o CI funcione, cadastre os **secrets** no repositório:
-
-```
-GitHub repo > Settings > Secrets and variables > Actions > New repository secret
-
-SUPABASE_URL   → sua Project URL
-SUPABASE_KEY   → sua chave anon public
 ```
 
 ---
