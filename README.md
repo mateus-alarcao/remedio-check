@@ -1,16 +1,15 @@
-# 💊 Remédio Check
+# Remédio Check
 
-
-> 🚀 **Deploy:** aplicação CLI — execute localmente seguindo as instruções abaixo.  
+> **Deploy:** aplicação CLI — execute localmente seguindo as instruções abaixo.  
 > Para execução sem instalação: `docker run --rm -it --env-file .env $(docker build -q .)` *(veja seção Docker)*
 
 ---
 
-## 📋 Problema Real
+## Problema Real
 
 Muitas pessoas, especialmente idosos e pacientes com doenças crônicas, têm dificuldade em lembrar quais medicamentos já tomaram no dia. Esquecer ou tomar remédios em duplicata pode causar sérios riscos à saúde.
 
-## 💡 Proposta da Solução
+## Proposta da Solução
 
 O Remédio Check é uma aplicação de linha de comando (CLI) que permite cadastrar medicamentos com horários, marcar quais já foram tomados no dia e resetar a lista para o próximo dia.
 
@@ -18,7 +17,7 @@ A partir da **v2.0.0**, os dados são persistidos em um **banco de dados Postgre
 
 ---
 
-## ✅ Funcionalidades
+## Funcionalidades
 
 - Adicionar remédio com nome e horário
 - Listar todos os remédios e seus status
@@ -30,7 +29,7 @@ A partir da **v2.0.0**, os dados são persistidos em um **banco de dados Postgre
 
 ---
 
-## 🛠️ Stack de Tecnologias
+## Stack de Tecnologias
 
 | Camada | Tecnologia |
 |---|---|
@@ -44,7 +43,7 @@ A partir da **v2.0.0**, os dados são persistidos em um **banco de dados Postgre
 
 ---
 
-## ⚙️ Instalação e Configuração
+## Instalação e Configuração
 
 ```bash
 # 1. Clone o repositório
@@ -72,7 +71,7 @@ SUPABASE_KEY=sb_publishable_Q1wNgX10KUzgfmsQbjG2Jg_5e3lk338
 
 ---
 
-## ▶️ Execução
+## Execução
 
 ```bash
 python src/app.py
@@ -81,9 +80,9 @@ python src/app.py
 Exemplo de uso:
 
 ```
-💊 Remédio Check v2.0.0
+Remédio Check v2.0.0
 Seu lembrete diário de medicamentos
-🗄️  Banco de dados: Supabase (PostgreSQL)
+Banco de dados: Supabase (PostgreSQL)
 
 1. Adicionar remédio
 2. Listar remédios
@@ -96,7 +95,7 @@ Seu lembrete diário de medicamentos
 
 ---
 
-## 🐳 Deploy via Docker
+## Deploy via Docker
 
 ```bash
 # Build da imagem
@@ -108,7 +107,7 @@ docker run --rm -it --env-file .env remedio-check
 
 ---
 
-## 🧪 Rodando os Testes
+## Rodando os Testes
 
 ```bash
 pytest --tb=short -v
@@ -128,7 +127,7 @@ tests/test_db.py           ............ 12 passed
 
 ---
 
-## 🔍 Rodando o Lint
+## Rodando o Lint
 
 ```bash
 ruff check src/ tests/
@@ -138,7 +137,7 @@ Saída esperada: nenhum erro ou aviso.
 
 ---
 
-## 🔗 Integração com API Externa — OpenFDA
+## Integração com API Externa — OpenFDA
 
 A aplicação consome a **[OpenFDA Drug Label API](https://open.fda.gov/apis/drug/label/)** — pública, gratuita e sem necessidade de chave de acesso.
 
@@ -146,21 +145,18 @@ A aplicação consome a **[OpenFDA Drug Label API](https://open.fda.gov/apis/dru
 6. Buscar informações de um remédio (OpenFDA)
 Nome do remédio (preferencialmente em inglês): aspirin
 
-📋 Informações encontradas:
+Informações encontradas:
    Nome comercial : Aspirin
    Substância     : ASPIRIN
    Fabricante     : Bayer HealthCare LLC
    Indicação      : Temporarily relieves minor aches and pains...
 ```
 
-> ⚠️ A base OpenFDA é americana. Use o nome do princípio ativo em inglês (ex: `metformin`, `aspirin`, `omeprazole`).
-
-
-```
+> A base OpenFDA é americana. Use o nome do princípio ativo em inglês (ex: `metformin`, `aspirin`, `omeprazole`).
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 remedio-check/
@@ -187,12 +183,12 @@ remedio-check/
 
 ---
 
-## 📌 Versão
+## Versão
 
 `2.0.0` — Integração com banco de dados Supabase (PostgreSQL)
 
 ---
 
-## 🔗 Links
+## Links
 
 - **Repositório:** [https://github.com/mateus-alarcao/remedio-check](https://github.com/mateus-alarcao/remedio-check)
