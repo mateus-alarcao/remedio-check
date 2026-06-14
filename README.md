@@ -7,10 +7,10 @@
 
 ## Equipe
 
-| Nome |
-|---|
-| Kaiky Ferreira | 22503268
-| Mateus Alarcão | 22503278
+| Nome | RA |
+|---|---|
+| Kaiky Ferreira | 22503268 | 
+| Mateus Alarcão | 22503278 |
 
 ---
 
