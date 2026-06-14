@@ -1,6 +1,6 @@
 import pytest
 
-from app import adicionar_remedio, marcar_tomado, remover_remedio, resetar_dia
+from app import adicionar_remedio, listar_remedios, marcar_tomado, remover_remedio, resetar_dia
 
 
 def test_adicionar_remedio_valido():
@@ -80,3 +80,37 @@ def test_resetar_dia():
     marcar_tomado(remedios, 1)
     resetar_dia(remedios)
     assert all(r["tomado"] is False for r in remedios)
+
+
+def test_listar_remedios_vazio_exibe_mensagem(capsys):
+    listar_remedios([])
+
+    saida = capsys.readouterr().out
+
+    assert "Remédios" in saida
+    assert "Nenhum remédio cadastrado." in saida
+
+
+def test_listar_remedios_exibe_tabela_alinhada(capsys):
+    remedios = [
+        {"nome": "Paracetamol", "horario": "08:00", "tomado": False},
+        {"nome": "Vitamina C", "horario": "12:30", "tomado": True},
+    ]
+
+    listar_remedios(remedios)
+
+    saida = capsys.readouterr().out
+
+    assert "Remédios cadastrados (2)" in saida
+    assert "Nº" in saida
+    assert "Remédio" in saida
+    assert "Horário" in saida
+    assert "Status" in saida
+    assert "0" in saida
+    assert "08:00" in saida
+    assert "Pendente" in saida
+    assert "Paracetamol" in saida
+    assert "1" in saida
+    assert "12:30" in saida
+    assert "Tomado" in saida
+    assert "Vitamina C" in saida

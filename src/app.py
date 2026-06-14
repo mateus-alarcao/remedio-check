@@ -1,4 +1,9 @@
 from dotenv import load_dotenv
+from rich import box
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
+from rich.text import Text
 
 load_dotenv()
 from api_medicamento import exibir_info_medicamento  # noqa: E402
@@ -11,6 +16,7 @@ from db import (  # noqa: E402
 )
 
 VERSION = "2.0.0"
+console = Console()
 
 
 # ── Funções de negócio puras (sem I/O) ────────────────────────────────────────
@@ -52,31 +58,86 @@ def resetar_dia(remedios: list) -> None:
 def listar_remedios(remedios: list) -> None:
     """Imprime a lista de remédios formatada no terminal."""
     if not remedios:
-        print("Nenhum remédio cadastrado.")
+        console.print(
+            Panel(
+                "Nenhum remédio cadastrado.",
+                title="Remédios",
+                border_style="yellow",
+                box=box.ROUNDED,
+            )
+        )
         return
-    print("\n--- Lista de Remédios ---")
+
+    tabela = Table(
+        title=f"Remédios cadastrados ({len(remedios)})",
+        box=box.SIMPLE_HEAVY,
+        header_style="bold cyan",
+        show_lines=False,
+    )
+    tabela.add_column("Nº", justify="right", style="cyan", no_wrap=True)
+    tabela.add_column("Horário", style="magenta", no_wrap=True)
+    tabela.add_column("Status", no_wrap=True)
+    tabela.add_column("Remédio", style="bold")
+
     for i, r in enumerate(remedios):
-        status = "✅ Tomado" if r["tomado"] else "⬜ Pendente"
-        print(f"[{i}] {r['nome']} — {r['horario']} — {status}")
-    print("-------------------------\n")
+        status = "[green]Tomado[/green]" if r["tomado"] else "[yellow]Pendente[/yellow]"
+        tabela.add_row(str(i), r["horario"], status, r["nome"])
+
+    console.print()
+    console.print(tabela)
+    console.print()
+
+
+def imprimir_menu_principal() -> None:
+    """Exibe as opções do menu principal."""
+    titulo = Text()
+    titulo.append("Remédio Check", style="bold cyan")
+    titulo.append(f" v{VERSION}", style="cyan")
+
+    console.print()
+    console.print(
+        Panel(
+            Text("Controle diário de medicamentos\nSupabase • PostgreSQL", justify="center"),
+            title=titulo,
+            border_style="cyan",
+            box=box.DOUBLE,
+            padding=(1, 4),
+        )
+    )
+
+    menu_tabela = Table.grid(padding=(0, 2))
+    menu_tabela.add_column(style="bold cyan", no_wrap=True)
+    menu_tabela.add_column()
+    menu_tabela.add_row("[1]", "Adicionar remédio")
+    menu_tabela.add_row("[2]", "Listar remédios")
+    menu_tabela.add_row("[3]", "Marcar como tomado")
+    menu_tabela.add_row("[4]", "Remover remédio")
+    menu_tabela.add_row("", "")
+    menu_tabela.add_row("[5]", "Resetar dia")
+    menu_tabela.add_row("", "")
+    menu_tabela.add_row("[6]", "Buscar informações no OpenFDA")
+    menu_tabela.add_row("", "")
+    menu_tabela.add_row("[0]", "Sair")
+
+    console.print(
+        Panel(
+            menu_tabela,
+            title="Menu principal",
+            border_style="blue",
+            box=box.ROUNDED,
+            padding=(1, 2),
+        )
+    )
 
 
 # ── Menu principal (usa o banco de dados Supabase) ────────────────────────────
 
 
 def menu() -> None:
-    print(f"\n💊 Remédio Check v{VERSION}")
-    print("Seu lembrete diário de medicamentos")
-    print("🗄️  Banco de dados: Supabase (PostgreSQL)\n")
+    print("\nSeu lembrete diário de medicamentos")
 
     while True:
-        print("1. Adicionar remédio")
-        print("2. Listar remédios")
-        print("3. Marcar como tomado")
-        print("4. Remover remédio")
-        print("5. Resetar dia")
-        print("6. Buscar informações de um remédio (OpenFDA)")
-        print("0. Sair")
+        imprimir_menu_principal()
         opcao = input("\nEscolha uma opção: ").strip()
 
         if opcao == "1":
